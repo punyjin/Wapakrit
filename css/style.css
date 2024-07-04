@@ -13,7 +13,6 @@
 table, th, td { /*นำไปใช้กับ <table>,<th>,<td>*/
     border: 1px solid #000;
     font-size: 16px; /*ขนาด Font*/
-    text-align: center; /*การจัดวาง text*/
     height: 50px; 
     width: 120px; 
     vertical-align: middle; /*การจัดวาง text*/
@@ -23,7 +22,7 @@ table, th, td { /*นำไปใช้กับ <table>,<th>,<td>*/
 }
 body {
     display: flex; /*การแสดงผล*/
-    background:url(/imgs/bg.png); /*เรียกใช้ พื้นหลังของเว็บไซต์*/
+    background:url(/assets/imgs/bg.jpg); /*เรียกใช้ พื้นหลังของเว็บไซต์*/
     flex-direction: column; /*การจัดเรียง Items*/
     align-items: center; /*การจัดวาง text*/
     text-align: center; /*การจัดวาง text*/
