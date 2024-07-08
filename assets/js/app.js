@@ -43,7 +43,7 @@ function TeacherSaidRemove_E(evt) {
     const Array01 = 69; //ตัว E
     const Array02 = 109; //นี่คือ -
     const Array03 = 107; //นี่คือ +
-    //const Array04 = 51; // นื่คือ - 3
+    //const Array04 = 51; // นื่คือ (- 3)
 
     // ตรวจสอบการอนุญาตคีย์ลัดและปุ่มสำคัญ
     if ((evt.ctrlKey && ['a', 'c', 'v', 'x'].includes(evt.key)) || evt.metaKey || evt.shiftKey ||

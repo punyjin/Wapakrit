@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiwKhao MunkaiTord</title>
+    <link href="/assets/css/mukaramyeon.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/fontawesome.min.css" rel="stylesheet">
+    <script src="/assets/js/useless.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="login-container" id="login-container">
+        <h2>ป้อนชื่อผู้ใช้งาน</h2>
+        <h6>กรุณาใส่ชื่อผู้ใช้งานของท่าน <br>เพื่อแสดงผลในระบบ</h6>
+        <input type="text" id="username-input" placeholder="Username">
+        <button class="btn btn-primary"onclick="ฑฎฑฎฑษฎฤฯฑฎษฯฎษฑฯฎฑษฎ()">Login</button>
+    </div>
+    <!-- NAV BAR-->
+    <div class="header" id="header" style="display: none;">
+        <img src="https://www.vbac.ac.th/attendee/img/logo.png" alt="LOGO">
+        <input type="text" class="search-bar" placeholder="Search" >
+        <div class="profile">
+            <img id ="username-img" src="" alt="Profile Picture" onclick="btn_Profile()">
+            <span id="username-display" onclick="btn_display_user()"></span>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a class="dropdown-item" href="?page=usercontrol">User Menu</a>
+                <a class="dropdown-item" href="?page=dark">Dark Mode</a>
+                <a class="dropdown-item" href="?page=shop">Shop</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="?page=about">About Me</a>
+            </div>
+        </div>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+    </div>
+    <!-- CONTENT -->
+    <div class="container" id="container" style="display: none;">
+        <div class="post">
+            <div class="post-header">
+                <img src="https://avatars.githubusercontent.com/u/91112547?v=4" alt="Profile Picture" onclick="btn_post_user_profile()">
+                <span class="username" onclick="btn_post_user_profile()">xorbit256</span>
+            </div>
+            <iframe class="post-image" width="600" height="400" src="https://www.youtube.com/embed/9b4nqsOhROU?si=15sukR_55mq3jdNX" title="Metal Light Effect | HTML CSS JavaScript" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="post-actions">
+                <img src="assets/imgs/heart-regular.svg" onclick="btn_Like()" alt="Like">
+                <img src="assets/imgs/comment-regular.svg" onclick="btn_Comment()" alt="Comment">
+                <img src="assets/imgs/share-solid.svg" onclick="btn_Share()" alt="Share">
+            </div>
+            <div class="post-description">
+                <span class="username">xorbit256</span> อันนี้สอนใช้ Table แบบ Ez
+            </div>
+        </div>
+    </div>
+    <!-- CONTENT 02 -->
+    <div class="container" id="container2" style="display: none;">
+        <div class="post">
+            <div class="post-header">
+                <img src="https://avatars.githubusercontent.com/u/91112547?v=4" alt="Profile Picture" onclick="btn_post_user_profile()">
+                <span class="username" onclick="btn_post_user_profile()">xorbit256</span>
+            </div>
+            <iframe class="post-image" width="600" height="400" src="https://www.youtube.com/embed/ItXPdagxDVQ?si=E9wFk9dmdvJVw9b0" title="Metal Light Effect | HTML CSS JavaScript" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="post-actions">
+                <img src="assets/imgs/heart-regular.svg" onclick="btn_Like()" alt="Like">
+                <img src="assets/imgs/comment-regular.svg" onclick="btn_Comment()" alt="Comment">
+                <img src="assets/imgs/share-solid.svg" onclick="btn_Share()" alt="Share">
+            </div>
+            <div class="post-description">
+                <span class="username">xorbit256</span> สอนใช้ Input แบบง่ายๆมากๆๆ
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

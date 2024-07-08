@@ -1,0 +1,136 @@
+/* Existing CSS */
+body {
+    margin: 0;
+    padding: 0;
+    background:url(/assets/imgs/bg.jpg);
+}
+.header {
+    background-color: #a68e8e;
+    border-bottom: 1px solid #5c5c5c;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header img {
+    height: 40px;
+}
+.search-bar {
+    background-color: #efefef;
+    border-radius: 3px;
+    padding: 5px 10px;
+    border: none;
+}
+.profile {
+    position: relative; /* เพิ่ม position: relative */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.profile img {
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.container {
+    max-width: 600px; /* เพิ่ม px */
+    margin: 50px auto;
+}
+.post {
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    width: 602px;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin: auto;
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.post-header img {
+    cursor: pointer;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.post-header .username {
+    cursor: pointer;
+    font-weight: bold;
+}
+.post-actions {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.post-actions img {
+    height: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.post-description {
+    padding: 10px;
+}
+.post-description .username {
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.login-container {
+    max-width: 370px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    text-align: center;
+}
+.login-container input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 278px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+}
+.dropdown-menu {
+    display: none; /* ซ่อนเมนูเริ่มต้น */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    z-index: 1000;
+}
+.dropdown-menu .dropdown-item {
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-menu .dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+.dropdown-divider {
+    height: 1px;
+    background-color: #e9ecef;
+    margin: 5px 0;
+}
+#add-post-btn {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#add-post-btn:hover {
+    background-color: #0056b3;
+}
