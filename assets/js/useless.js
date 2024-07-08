@@ -21,7 +21,8 @@ function ฑฎฑฎฑษฎฤฯฑฎษฯฎษฑฯฎฑษฎ() {
                 document.getElementById('login-container').style.display = 'none';
                 document.getElementById('header').style.display = 'flex';
                 document.getElementById('container').style.display = 'block';
-                document.getElementById('container2').style="display: legacy;";
+                document.getElementById('container2').style.display = 'block';
+                document.getElementById('container3').style.display = 'block';
                 document.getElementById('username-img').src = "/assets/imgs/" + username + ".jpg";
                 document.getElementById('username-img').onerror = function() {
                     this.src = "/assets/imgs/user-solid.svg";
