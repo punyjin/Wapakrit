@@ -4,30 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello</title>
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <!--<link href="https://cdn.jsdelivr.net/sweetalert2/6.5.6/sweetalert2.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.1/sweetalert2.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>-->
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div>
+    <div class="form-group">
         <form id="Formcat" action="#">
             <h1>Sample Form</h1>
             <label for="name">ชื่อ:</label><br>
             <input type="text" id="name" name="name" placeholder="ชื่อ" class="form-control"><br>
             
             <label for="email">อีเมล:</label><br>
-            <input type="text" id="email" name="email" placeholder="อีเมล" class="form-control"><br>
+            <input type="email" id="email" name="email" placeholder="อีเมล" class="form-control"><br>
             
             <label for="age">อายุ:</label><br>
-            <input type="text" id="age" name="age" placeholder="อายุ" class="form-control"><br>
+            <input class="form-control" type="number" onkeydown="TeacherSaidRemove_E(event)" id="age" name="age" placeholder="อายุ" ><br>
             
             <label>เพศ:</label><br>
-            <input type="radio" name="gender" id="male" value="male">
+            <input type="radio" name="gender" id="male" value="Male">
             <label for="male">ชาย</label>
-            <input type="radio" name="gender" id="female" value="female">
+            <input type="radio" name="gender" id="female" value="Female">
             <label for="female">หญิง</label><br><br>
             
             <label for="comment">ความคิดเห็น:</label><br>
@@ -36,9 +33,7 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    
     <div id="mamu"></div>
-
     <script src="assets/js/app.js"></script>
 </body>
 </html>

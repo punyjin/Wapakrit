@@ -1,6 +1,14 @@
 /*หิวข้าวมากๆ หิวข้าวมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมาก
 มากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากมากๆๆๆ
 */
+
+/*ซ่อน wheel ใน input number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/*เรียกใช้ Font */
 @font-face{
     font-family: fonts;
     src: url('/assets/fonts/cloud.otf');
@@ -9,7 +17,6 @@
       font-family: raleway;
       src: url('/assets/fonts/raleway.ttf');
   }
-  
 table, th, td { /*นำไปใช้กับ <table>,<th>,<td>*/
     border: 1px solid #000;
     font-size: 16px; /*ขนาด Font*/
