@@ -31,6 +31,7 @@ document.getElementById("Formcat").addEventListener("submit", function(event) {
             text: "ระบบจะแสดงผลลัพธ์ของท่านด้านล่างนี้",
             icon: "success"
         });
+        document.getElementById('mamu').style.display = 'block';
     }
 })
 
