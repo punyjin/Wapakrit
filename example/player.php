@@ -79,7 +79,7 @@
       <div class="input-group-prepend">
          <span class="input-group-text">EXP</span>
       </div>
-      <input class="form-control"  id="current_exp" value="<?php echo $dbarr['exp']; ?>">
+      <input class="form-control" readonly="" id="current_exp" value="<?php echo $dbarr['exp']; ?>">
    </div>
 </div>
 <div class="form-group my-3">
