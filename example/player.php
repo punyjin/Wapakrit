@@ -22,53 +22,53 @@
          <span class="input-group-text"><img src="<?=$uri;?>/assets/image/rank/<?php echo $dbarr['rank']; ?>.gif" alt="rank_icon" width="20" height="20"></span>
          <?php if($dbarr['esport'] == "0"){
             } else { ?>
-         <span class="input-group-text"><img src="<?=$uri;?>/assets/image/esport/<?php echo $dbarr['esport']; ?>.png" width="20" height="20"></span>
+         <span class="input-group-text"><img src="<?=$uri;?>/assets/image/esport/<?php echo $dbarr['esport']; ?>.png" alt="special_icon" width="20" height="20"></span>
          <?php } ?>
          <?php if($dbarr['pc_cafe'] == "0"){ 
             }else { ?>
-         <span class="input-group-text"><img src="<?=$uri;?>/assets/image/pccafe/<?php echo $dbarr['pc_cafe']; ?>.jpg" width="42" height="16"></span>
+         <span class="input-group-text"><img src="<?=$uri;?>/assets/image/pccafe/<?php echo $dbarr['pc_cafe']; ?>.jpg" alt="subscription_icon" width="42" height="16"></span>
          <?php } ?>
       </div>
       <?php
          if($dbarr['name_color'] == "0"){
          	?>
-      <input type="text" class="form-control" readonly="" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "1"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #FF0000" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #FF0000" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "2"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #ff7c00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #ff7c00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "3"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #ffff00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #ffff00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "4"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #7cfc00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #7cfc00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "5"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #00ff00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #00ff00" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "6"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #32cd32" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #32cd32" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "7"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #80ced6" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #80ced6" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "8"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #0066FF" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #0066FF" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }else if($dbarr['name_color'] == "9"){
          	?>
-      <input type="text" class="form-control" readonly="" style="color: #0000FF" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
+      <input type="text" class="form-control" id="account_name" readonly="" style="color: #0000FF" value="<?php if($dbarr['player_name']==""){echo "ยังไม่ได้สร้างตัวละคร";}else{echo $dbarr['player_name'];} ?>">
       <?php
          }
          ?>
@@ -79,7 +79,7 @@
       <div class="input-group-prepend">
          <span class="input-group-text">EXP</span>
       </div>
-      <input type="text" class="form-control" readonly="" value="<?php echo $dbarr['exp']; ?>">
+      <input class="form-control"  id="current_exp" value="<?php echo $dbarr['exp']; ?>">
    </div>
 </div>
 <div class="form-group my-3">
