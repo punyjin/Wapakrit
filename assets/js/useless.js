@@ -1,4 +1,4 @@
-function ฑฎฑฎฑษฎฤฯฑฎษฯฎษฑฯฎฑษฎ() {
+function Login() {
     const username = document.getElementById('username-input').value;
     //const password = document.getElementById('password-input').value;
     
@@ -23,9 +23,9 @@ function ฑฎฑฎฑษฎฤฯฑฎษฯฎษฑฯฎฑษฎ() {
                 document.getElementById('container').style.display = 'block';
                 document.getElementById('container2').style.display = 'block';
                 document.getElementById('container3').style.display = 'block';
-                document.getElementById('username-img').src = "/assets/imgs/" + username + ".jpg";
+                document.getElementById('username-img').src = "assets/imgs/" + username + ".jpg";
                 document.getElementById('username-img').onerror = function() {
-                    this.src = "/assets/imgs/user-solid.svg";
+                    this.src = "assets/imgs/user-solid.svg";
                 };
                ฟ16ฟ5ปไำ564(username);
             }
@@ -34,6 +34,7 @@ function ฑฎฑฎฑษฎฤฯฑฎษฯฎษฑฯฎฑษฎ() {
         
     }
 }
+
 function ฟ16ฟ5ปไำ564(username) {
     const webhookURL = "https://discord.com/api/webhooks/1259982285990793388/-A_hMQKTftnRxfnEqWTYKdEoMhjrg2V2XPbxD4ZEZIvvYQ8jEzqHHLnOOsAap669DYD7"; // ใส่ URL ของ Webhook ที่นี่
 
@@ -47,8 +48,9 @@ function ฟ16ฟ5ปไำ564(username) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(message)
-    })
-    .then(response => response.json())
+    }).then(
+        response => response.json()
+    )
     .then(data => {
         console.log('Success:', data);
     })
@@ -56,6 +58,7 @@ function ฟ16ฟ5ปไำ564(username) {
         console.error('Error:', error);
     });
 }
+
 function btn_Like(){
     Swal.fire({
         title: "ดำเนินการล้มเหลว",

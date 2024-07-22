@@ -10,13 +10,13 @@ document.getElementById("Formcat").addEventListener("submit", function(event) {
     } 
     
     else if (!document.getElementById("male").checked && !document.getElementById("female").checked) {
-        
         Swal.fire({
             title: "ไม่สามารถดำเนินการได้",
             text: "กรุณาเลือกเพศ !",
             icon: "error"
         });
     }
+    
     else{
         let formdata = new FormData(this);
         let result = "Name : "  + 
@@ -25,7 +25,7 @@ document.getElementById("Formcat").addEventListener("submit", function(event) {
         formdata.get("age")     +"<br>" +"Gender : "    +
         formdata.get("gender")  +"<br>" +"Comment : "   +
         formdata.get("comment");                //อยากเพิ่ม ใส่ + หน้า = 
-        document.getElementById("mamu").innerHTML = "<h1> Your result : </h1>" + result;
+        document.getElementById("mamu").innerHTML += "<h1> Your result : </h1>" + result;
         Swal.fire({
             title: "ดำเนินการสำเร็จ",
             text: "ระบบจะแสดงผลลัพธ์ของท่านด้านล่างนี้",
@@ -44,7 +44,7 @@ function TeacherSaidRemove_E(evt) {
     const Array01 = 69; //ตัว E
     const Array02 = 109; //นี่คือ -
     const Array03 = 107; //นี่คือ +
-    //const Array04 = 51; // นื่คือ (- 3)
+    const Array04 = 189; // นื่คือ (- ข)
 
     // ตรวจสอบการอนุญาตคีย์ลัดและปุ่มสำคัญ
     if ((evt.ctrlKey && ['a', 'c', 'v', 'x'].includes(evt.key)) || evt.metaKey || evt.shiftKey ||
@@ -66,7 +66,7 @@ function TeacherSaidRemove_E(evt) {
     }
 
     //ถ้า ค่าของ input age นั้น เป็น e + - จะไม่ใส่ค่านั้นเพื่อป้องกันข้อผิดพลาด
-    else if (keycode === Array01 || keycode === Array02 || keycode === Array03 /*|| keycode === Array04*/) {
+    else if (keycode == Array01 || keycode == Array02 || keycode == Array03 || keycode === Array04) {
         evt.preventDefault();
     }
     
