@@ -20,24 +20,14 @@
    <div class="input-group mb-3">
       <div class="input-group-prepend">
          <span class="input-group-text"><img src="<?=$uri;?>/assets/image/rank/<?php echo $dbarr['rank']; ?>.gif" width="20" height="20"></span>
-         <?php
-            if($dbarr['esport'] == "0"){
-            
-            }else{
-            	?>
+         <?php if($dbarr['esport'] == "0"){
+            } else { ?>
          <span class="input-group-text"><img src="<?=$uri;?>/assets/image/esport/<?php echo $dbarr['esport']; ?>.png" width="20" height="20"></span>
-         <?php
-            }
-            ?>
-         <?php
-            if($dbarr['pc_cafe'] == "0"){
-            
-            }else{
-            	?>
+         <?php } ?>
+         <?php if($dbarr['pc_cafe'] == "0"){ 
+            }else { ?>
          <span class="input-group-text"><img src="<?=$uri;?>/assets/image/pccafe/<?php echo $dbarr['pc_cafe']; ?>.jpg" width="42" height="16"></span>
-         <?php
-            }
-            ?>
+         <?php } ?>
       </div>
       <?php
          if($dbarr['name_color'] == "0"){
@@ -153,42 +143,41 @@
       ?>
    </div>
 </div>
-<?php if($dbarr['access_level'] >= "1"){ ?>
+<?php if($dbarr['access_level'] >= "1")
+{ ?>
 <div class="form-group my-3">
    <div class="input-group mb-3">
       <div class="input-group-prepend">
          <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
-      </div>
-      <?php } ?>
-<?php
-         if($dbarr['access_level'] == "1"){
-         	?>
+      </div> 
+<?php } ?>
+      <?php if($dbarr['access_level'] == "1")
+      { ?>
       <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง : Staff Community">
-      <?php
-         }else if($dbarr['access_level'] == "2"){
-         	?>
+      <?php } 
+      else if($dbarr['access_level'] == "2")
+      { ?>
       <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Game Master">
-      <?php
-         }else if($dbarr['access_level'] == "3"){
-         	?>
+      <?php }
+      else if($dbarr['access_level'] == "3")
+      {?>
       <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Moderator">
-      <?php
-         }else if($dbarr['access_level'] == "4"){
-         	?>
+      <?php }
+      else if($dbarr['access_level'] == "4")
+      { ?>
       <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Admin">
-      <?php
-         }else if($dbarr['access_level'] == "5"){
-         	?>
+      <?php }
+      else if($dbarr['access_level'] == "5")
+      { ?>
       <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Manager">
-      <?php
-         }else if($dbarr['access_level'] == "6"){
-         	?>
+      <?php }
+      else if($dbarr['access_level'] == "6")
+      { ?>
       <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Developer">
-      <?php 
-         }else if($dbarr['access_level'] >= "7"){
-         	?>
+      <?php }
+      else if($dbarr['access_level'] >= "7")
+      { ?>
       <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Owner">
-      <?php 
-         }?>
+      <?php }?>
    </div>
 </div>
