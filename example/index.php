@@ -119,7 +119,7 @@ if (isset($_SESSION['login_true'])) {
                         </li>
                     <?php } ?>
                     <!-- Other menu items can be added here -->
-                     
+
                 </ul>
             </div>
         </div>
@@ -178,15 +178,16 @@ if (isset($_SESSION['login_true'])) {
                 ?>
          </div>
       </div>
-
-      <!-- Footer -->
-      <div style="background-color:#2a2c2d!important">
+    </div>
+    <!-- Footer -->
+    <footer style="background-color:#2a2c2d!important">
          <div class="contx" style="padding:8px;color:#FFF; text-align:center;">
             <small style="font-size:14px;">Design & System By <a href="https://discord.gg/kazeneko" target="_blank" class="credit-footer"><?php echo $config['footer_credit']; ?></a></small>
          </div>
-      </div>
-      
+    </footer>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
 </body>
+
 </html>

@@ -58,7 +58,7 @@ $Random = GenerateRandomString(8);
    </div>
    <div class="card mb-3">
       <div class="card-header" id="header">
-         <b><i class="fa fa-fw fa-newspaper-o"></i>&nbsp;Event & Promotion</b> กิจกรรม และ โปรโมชั่น ใหม่
+         <b><i class="fas fa-newspaper"></i>&nbsp;Event & Promotion</b> กิจกรรม และ โปรโมชั่น ใหม่
       </div>
       <div class="card-body" style="padding: 0px; border-top:4px solid #306aff;position: relative;">
          <table class="table" style="width: 100%;">
