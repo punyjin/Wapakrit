@@ -19,7 +19,7 @@
 <div class="form-group my-3">
    <div class="input-group mb-3">
       <div class="input-group-prepend">
-         <span class="input-group-text"><img src="<?=$uri;?>/assets/image/rank/<?php echo $dbarr['rank']; ?>.gif" width="20" height="20"></span>
+         <span class="input-group-text"><img src="<?=$uri;?>/assets/image/rank/<?php echo $dbarr['rank']; ?>.gif" alt="rank_icon" width="20" height="20"></span>
          <?php if($dbarr['esport'] == "0"){
             } else { ?>
          <span class="input-group-text"><img src="<?=$uri;?>/assets/image/esport/<?php echo $dbarr['esport']; ?>.png" width="20" height="20"></span>
@@ -95,7 +95,7 @@
       <div class="input-group-prepend">
          <span class="input-group-text"><i class="fa fa-fw fa-money-bill-alt"></i></span>
       </div>
-      <input type="text" class="form-control" id="current_promotion" readonly="" value="Cash  : <?php echo $dbarr['money']; ?>">
+      <input type="text" class="form-control" id="current_money" readonly="" value="Cash  : <?php echo $dbarr['money']; ?>">
    </div>
 </div>
 <div class="form-group my-3">
@@ -103,7 +103,7 @@
       <div class="input-group-prepend">
          <span class="input-group-text"><i class="fa fa-fw fa-money-bill-alt"></i></span>
       </div>
-      <input type="text" class="form-control" id="current_promotion" readonly="" value="Coins  : <?php echo number_format($dbarr['coin'],0); ?>">
+      <input type="text" class="form-control" id="current_coins" readonly="" value="Coins  : <?php echo number_format($dbarr['coin'],0); ?>">
    </div>
 </div>
 <div class="form-group my-3">
@@ -111,14 +111,14 @@
    <div class="input-group-prepend">
       <span class="input-group-text"><i class="fa fa-fw fa-money-bill-alt"></i></span>
    </div>
-   <input type="text" class="form-control" id="current_promotion" readonly="" value="ยอดเติมเงินต่อเดือน  : <?php echo $dbarr['money_promotion']; ?>">
+   <input type="text" class="form-control" id="current_money_promotion" readonly="" value="ยอดเติมเงินต่อเดือน  : <?php echo $dbarr['money_promotion']; ?>">
 </div>
 <div class="form-group my-3">
    <div class="input-group mb-3">
       <div class="input-group-prepend">
          <span class="input-group-text"><i class="fa fa-fw fa-money-bill-alt"></i></span>
       </div>
-      <input type="text" class="form-control" id="current_promotion" readonly="" value="ยอดเติมเงินรวมทั้งหมด  : <?php echo $dbarr['money_promotion_all']; ?>">
+      <input type="text" class="form-control" id="current_money_promotion_all" readonly="" value="ยอดเติมเงินรวมทั้งหมด  : <?php echo $dbarr['money_promotion_all']; ?>">
    </div>
 </div>
 <div class="form-group my-3">
@@ -129,15 +129,15 @@
       <?php
          if($dbarr['online'] = "f"){
          	?>
-      <input type="text" class="form-control" id="current_promotion" readonly="" style="color: red" value="สถานะ  : ออฟไลน์">
+      <input type="text" class="form-control" id="current_status_offline" readonly="" style="color: red" value="สถานะ  : ออฟไลน์">
       <?php
          }else if ($dbarr['online'] = "t"){
          	?>
-      <input type="text" class="form-control" id="current_promotion" readonly="" style="color: green" value="สถานะ  : ออนไลน์">
+      <input type="text" class="form-control" id="current_status_online" readonly="" style="color: green" value="สถานะ  : ออนไลน์">
       <?php
          }else{
          ?>
-      <input type="text" class="form-control" id="current_promotion" readonly="" style="color: grey" value="สถานะ  : ไม่สามารถระบุได้" >
+      <input type="text" class="form-control" id="current_status_unknow" readonly="" style="color: grey" value="สถานะ  : ไม่สามารถระบุได้" >
       <?php
       }
       ?>
@@ -153,31 +153,31 @@
 <?php } ?>
       <?php if($dbarr['access_level'] == "1")
       { ?>
-      <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง : Staff Community">
+      <input type="text" class="form-control" id="staff_level_community" readonly=""  value="ตำแหน่ง : Staff Community">
       <?php } 
       else if($dbarr['access_level'] == "2")
       { ?>
-      <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Game Master">
+      <input type="text" class="form-control" id="staff_level_game_master" readonly=""  value="ตำแหน่ง  : Game Master">
       <?php }
       else if($dbarr['access_level'] == "3")
       {?>
-      <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Moderator">
+      <input type="text" class="form-control" id="staff_level_moderator" readonly=""  value="ตำแหน่ง  : Moderator">
       <?php }
       else if($dbarr['access_level'] == "4")
       { ?>
-      <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Admin">
+      <input type="text" class="form-control" id="staff_level_admin" readonly=""  value="ตำแหน่ง  : Admin">
       <?php }
       else if($dbarr['access_level'] == "5")
       { ?>
-      <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Manager">
+      <input type="text" class="form-control" id="staff_level_manager" readonly=""  value="ตำแหน่ง  : Manager">
       <?php }
       else if($dbarr['access_level'] == "6")
       { ?>
-      <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Developer">
+      <input type="text" class="form-control" id="staff_level_developer" readonly=""  value="ตำแหน่ง  : Developer">
       <?php }
       else if($dbarr['access_level'] >= "7")
       { ?>
-      <input type="text" class="form-control" id="staff_level" readonly=""  value="ตำแหน่ง  : Owner">
+      <input type="text" class="form-control" id="staff_level_to_high" readonly=""  value="ตำแหน่ง  : Owner">
       <?php }?>
    </div>
 </div>

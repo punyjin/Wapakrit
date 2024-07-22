@@ -34,10 +34,10 @@ $Random = GenerateRandomString(8);
 				  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
                </ol>
                <div class="carousel-inner">
-                  <div class="carousel-item active"><img src="<?=$uri;?>/assets/images/xorbit/ABOUT.png" class="d-block w-100" style="height: 400px !important"></div>
-                  <div class="carousel-item "><img src="<?=$uri;?>/assets/images/xorbit/GAMEINDEVELOPMENT.png" class="d-block w-100" style="height: 400px !important"></div>
-                  <div class="carousel-item "><img src="<?=$uri;?>/assets/images/xorbit/PIXELFIGHTER.png" class="d-block w-100" style="height: 400px !important"></div>
-                  <div class="carousel-item "><img src="<?=$uri;?>/assets/images/xorbit/PIXELFIGHTER_INFORM.png" class="d-block w-100" style="height: 400px !important"></div>
+                  <div class="carousel-item active"><img src="<?=$uri;?>/assets/images/xorbit/ABOUT.png" alt="CRS_01" class="d-block w-100" style="height: 400px !important"></div>
+                  <div class="carousel-item "><img src="<?=$uri;?>/assets/images/xorbit/GAMEINDEVELOPMENT.png" alt="CRS_02" class="d-block w-100" style="height: 400px !important"></div>
+                  <div class="carousel-item "><img src="<?=$uri;?>/assets/images/xorbit/PIXELFIGHTER.png" alt="CRS_03" class="d-block w-100" style="height: 400px !important"></div>
+                  <div class="carousel-item "><img src="<?=$uri;?>/assets/images/xorbit/PIXELFIGHTER_INFORM.png" alt="CRS_04" class="d-block w-100" style="height: 400px !important"></div>
                </div>
                <a class="carousel-control-prev" href="#newscarousel" role="button" data-slide="prev">
                <span class="carousel-control-prev-icon" aria-hidden="true"></span>

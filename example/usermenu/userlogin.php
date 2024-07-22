@@ -10,7 +10,7 @@
                <div class="card-content">
                   <div class="row">
                      <div class="col-2">
-                        <img src="<?=$uri;?>/assets/image/img/login.svg" alt="" style="width: 37px; height: 37px;">
+                        <img src="<?=$uri;?>/assets/image/img/login.svg" alt="login_icon" style="width: 37px; height: 37px;">
                      </div>
                      <div class="col">
                         <b style="color: red;">Login</b>

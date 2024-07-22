@@ -127,7 +127,7 @@ if (isset($_SESSION['login_true'])) {
    <br>
     <center>
          <div class="logo" style="margin-top: 0px;">
-            <img src="<?=$uri;?>/assets/images/kkb/anim_logo.jpg" class="img-fluid " width="200" height="1" id="animation" >
+            <img src="<?=$uri;?>/assets/images/kkb/anim_logo.jpg" alt="logo" class="img-fluid " width="200" height="1" id="animation" >
          </div>
    </center>
    <br><br>
