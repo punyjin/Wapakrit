@@ -1,0 +1,231 @@
+.autocomplete_list * {
+	font-size: 13px;
+}
+
+.autocomplete_list b {
+	font-weight: bold;
+}
+
+.autocomplete_list { 
+	background: #FFF; display: block;
+	border: 1px solid #3a61d0;
+	text-align: left; z-index: 200; 
+	border-radius: 5px;
+}
+
+.autocomplete_list, .autocomplete_list ol, .autocomplete_list li { 
+	list-style-type: none; 
+	margin: 0; 
+	padding: 0; 
+}
+
+.autocomplete_list li { 
+	margin: 0; 
+	text-align: left;
+	cursor: pointer; 
+	padding: 4px;
+	border-bottom: 1px solid #3a61d0;	
+}
+
+.autocomplete_list .last_item { 
+	border: none;	
+}
+
+.autocomplete_list .current_item { 
+	background: #3a61d0;
+    color: #FFF;
+}
+
+.autocomplete_list span { 
+	color: #111; float: right; padding-left: 2em; 
+}
+
+.autocomplete_icon { 
+	background-image: url(autocomplete.gif);	
+	cursor: pointer;
+	cursor: hand;	
+}
+
+.radio-toolbar input[type="radio"] {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+  }
+  
+  .radio-toolbar label  {
+	  display: inline-block;
+	  background-color: #ddd;
+	  padding: 5px 10px;
+	  font-size: 15px;
+	  border: 2px solid #444;
+	  margin:-3px;
+	  cursor:pointer;
+  }
+  
+  
+  .radio-toolbar .green {
+	  color: #28a745;
+	  background-color: transparent;
+	  background-image: none;
+	  border-color: #eee;
+  }
+  
+  .radio-toolbar .yellow {
+	  color: #e0a800;
+	  background-color: transparent;
+	  background-image: none;
+	  border-color: #eee;
+  }
+  
+  .radio-toolbar .red {
+	  color: #bd2130;
+	  background-color: transparent;
+	  background-image: none;
+	  border-color: #eee;
+  }
+  
+
+  
+  
+  .radio-toolbar .green:hover {
+	  color: #fff;
+	  background-color: #28a745;
+	  border-color: #28a745;
+  }
+  
+  .radio-toolbar .yellow:hover {
+	  color: #212529;
+	  background-color: #e0a800;
+	  border-color: #d39e00;
+  }
+  
+  .radio-toolbar .red:hover {
+	  color: #fff;
+	  background-color: #c82333;
+	  border-color: #bd2130;
+  }
+  
+  .radio-toolbar  input[type="radio"]:focus + .green {
+	  border: 2px dashed #444;
+  }
+  
+  .radio-toolbar input[type="radio"]:checked + .green {
+	  color: #fff;
+	  background-color: #28a745;
+	  border-color: #28a745;
+  }
+  
+  
+  .radio-toolbar  input[type="radio"]:focus + .yellow {
+	  border: 2px dashed #212529;
+  }
+  
+  .radio-toolbar input[type="radio"]:checked + .yellow {
+	  color: #000;
+	  background-color: #e0a800;
+	  border-color: #d39e00;
+  }
+  
+  .radio-toolbar  input[type="radio"]:focus + .red {
+	  border: 2px dashed #c82333;
+  }
+  
+  .radio-toolbar input[type="radio"]:checked + .red {
+	  color: #fff;
+	  background-color: #c82333;
+	  border-color: #bd2130;
+  }
+
+  
+
+
+
+
+  /*------------------------------*/
+  .checkbox-toolbar input[type="checkbox"] {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+  }
+  
+  .checkbox-toolbar label  {
+	  display: inline-block;
+	  background-color: #ddd;
+	  padding: 5px 10px;
+	  font-size: 13px;
+	  border: 2px solid #444;
+	  margin:-3px;
+	  cursor:pointer;
+  }
+  
+  
+  .checkbox-toolbar .green {
+	  color: #28a745;
+	  background-color: transparent;
+	  background-image: none;
+	  border-color: #eee;
+  }
+  
+  .checkbox-toolbar .yellow {
+	  color: #e0a800;
+	  background-color: transparent;
+	  background-image: none;
+	  border-color: #eee;
+  }
+  
+  .checkbox-toolbar .red {
+	  color: #bd2130;
+	  background-color: transparent;
+	  background-image: none;
+	  border-color: #eee;
+  }
+  
+  .checkbox-toolbar .green:hover {
+	  color: #fff;
+	  background-color: #28a745;
+	  border-color: #28a745;
+  }
+  
+  .checkbox-toolbar .yellow:hover {
+	  color: #212529;
+	  background-color: #e0a800;
+	  border-color: #d39e00;
+  }
+  
+  .checkbox-toolbar .red:hover {
+	  color: #fff;
+	  background-color: #c82333;
+	  border-color: #bd2130;
+  }
+  
+  .checkbox-toolbar  input[type="checkbox"]:focus + .green {
+	  border: 2px dashed #444;
+  }
+  
+  .checkbox-toolbar input[type="checkbox"]:checked + .green {
+	  color: #fff;
+	  background-color: #28a745;
+	  border-color: #28a745;
+  }
+  
+  
+  .checkbox-toolbar  input[type="checkbox"]:focus + .yellow {
+	  border: 2px dashed #212529;
+  }
+  
+  .checkbox-toolbar input[type="checkbox"]:checked + .yellow {
+	  color: #000;
+	  background-color: #e0a800;
+	  border-color: #d39e00;
+  }
+  
+  .checkbox-toolbar  input[type="checkbox"]:focus + .red {
+	  border: 2px dashed #c82333;
+  }
+  
+  .checkbox-toolbar input[type="checkbox"]:checked + .red {
+	  color: #fff;
+	  background-color: #c82333;
+	  border-color: #bd2130;
+  }
+  

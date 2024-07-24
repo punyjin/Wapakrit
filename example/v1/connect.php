@@ -26,6 +26,7 @@ $web['type_patch'] = "4";
 $web['detail'] = "แมวอ้วนตัวสีขาวตาสองสีชอบสวบมนุด !";
 $web['sub_gold'] = "79"; //ราคา Sub Gold
 $web['sub_premium'] = "149"; //ราคา Sub Premium
+
 // end webconfig
 
 

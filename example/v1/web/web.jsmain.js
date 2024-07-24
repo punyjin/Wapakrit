@@ -17,13 +17,21 @@ function getError(desc = "เกิดข้อผิดพลาด", title = "
 }
 
 $(document).ready(function() {
-	// Key Enter
+	// Key Enter may be in future add more function
 	$("#login-form input").on("keypress", function(e) {
 		if (e.keyCode == 13) {
 			clickLogin();
 		}
 	});
-
+	// Sidebar Back To Home Page Muka
+	$("#sidebarToggle").on('click', function(e) {
+        e.preventDefault();
+        location.href = "?page=home";
+    });
+	$("#btn-search-staff").on('click',function(e){
+		e.preventDefault();
+		searchStaff();
+	})
 	// Animation Center Image
 	$(window).on('beforeunload', function() {
 		$(window).scrollTop(0);
@@ -123,15 +131,34 @@ function pccafe($item) {
 			if(result.reload == "true"){
 				setTimeout(function(){ location.reload(); }, 1500);
 			}
-		},
-		error: function(xhr, status, error) {
-			console.error('Error: ' + status + ' - ' + error);
-			console.error('Response Text: ' + xhr.responseText);
-			getError('การเชื่อมต่อล้มเหลว', 'Connection Failed');
 		}
 	});
 }
 
+function buyitempoint($item) {
+	$.ajax({
+		type: "POST",
+		url: "v1/action.php",
+		data: "action=buyitempoint&itemid=" + $item,
+		success: function(result_) {
+			var result = JSON.parse(result_);
+			switch(result.status){
+				case "success":
+					getSuccess(result.desc, result.title);
+					$("#playerpoint").text(result.point);
+					break;
+				case "error":
+					getError(result.desc, result.title);
+					break;
+				default:
+					getError();
+			}
+			if(result.reload == "true"){
+				setTimeout(function(){ location.reload(); }, 1500);
+			}
+		}
+	});
+}
 function clickLogin() {
 	$.ajax({
 		type: "POST",
@@ -247,6 +274,37 @@ function clickRegister() {
 		}
 	});
 }
+function searchStaff() {
+	
+    var staff_id = $("#subject_staff").val();
+    if (staff_id == "0") {
+        getError("กรุณาเลือกพนักงานก่อนดำเนินการ", "Error");
+        return false;
+    }
+    $.ajax({
+        type: "POST",
+        url: "v1/action.php",
+        data: {
+            action: 'subject_staff',
+            subject_staff: staff_id
+        },
+        success: function(result_) {
+            var result = JSON.parse(result_);
+            if (result.status == "success") {
+                $("#staff-details").html(result.html);
+                getSuccess(result.desc, result.title);
+            } else {
+                getError(result.desc, result.title);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error: ' + status + ' - ' + error);
+            console.error('Response Text: ' + xhr.responseText);
+            getError('การเชื่อมต่อล้มเหลว', 'Connection Failed');
+        }
+    });
+    return false;
+}
 
 function clickPassword() {
 	$.ajax({
@@ -294,4 +352,34 @@ function Modal_Alert(message, type = "default") {
 	}
 	$('#alert_box #text_message').html('<div id="alert" class="alert ' + class_name + ' alert-dismissible fade show" role="alert" align="left">' +
 		message + '</div>');
+}
+
+function changestatus(st,no){       
+        if(st == 1){
+            $('#regis_status'+no).html('ดำเนินการเรียบร้อย');
+            $('#comment_status_'+no).val(st);
+            $('#btn'+no).removeClass("btn-primary");  
+            $('#btn'+no).addClass("btn-success");      
+           
+
+        }else if(st == 0){
+            $('#regis_status'+no).html('รอดำเนินการ');
+            $('#comment_status_'+no).val(st);
+            $('#btn'+no).addClass("btn-primary");  
+            $('#btn'+no).removeClass("btn-success"); 
+        }
+}
+
+function saveComment(stu_no){
+	var comment = $('#comment'+stu_no).val();
+	$.ajax({
+		type:"POST",
+		url:"v1/action.php",
+		data:$("#form_comment"+stu_no).serialize(),//only input
+		success: function(response){
+			$('#comment_zone'+stu_no).html(comment);
+			$('#commentmodal'+stu_no).modal('toggle');
+		}
+	});
+
 }

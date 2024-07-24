@@ -1,0 +1,29 @@
+.credit-footer{
+  color: pink;
+  text-decoration: underline;
+}
+.form-control {
+  border-radius: 0;
+}
+
+.raleway {
+  font-family: fonts;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.card-title {
+  text-align: left;
+  font-size: 18px;
+}
+
+.card-header {
+  text-align: left;
+}
+
+.card {
+  background-color: rgba(40,40,40,0.5);
+  border: none;
+}

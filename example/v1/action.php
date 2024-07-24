@@ -5,6 +5,8 @@ session_start();
 include($_SERVER['DOCUMENT_ROOT'] . "/v1/connect.php");
 include($_SERVER['DOCUMENT_ROOT'] . "/data/database/postgres.php");
 
+
+
 function duration($begin, $end)
 {
     $remain = intval(strtotime($end) - strtotime($begin));
@@ -32,9 +34,46 @@ $result = pg_query_params($dbconn, "SELECT * FROM accounts WHERE login=$1", [@$_
 $dbarr = pg_fetch_array($result);
 date_default_timezone_set('Asia/Bangkok');
 $date_now = date("Y-m-d H:i:s", time());
+$get_staff_param = pg_query_params($dbconn,"SELECT * FROM employees");
+$fetch_staff_data = pg_fetch_array($get_staff_param);
 
 $data = new stdClass();
 
+function getAccessLevel($dbarr) {
+    switch ($dbarr['access_level']) {
+        case "1":
+            return "Staff Community";
+        case "2":
+            return "Game Master";
+        case "3":
+            return "Moderator";
+        case "4":
+            return "Admin";
+        case "5":
+            return "Manager";
+        case "6":
+            return "Developer";
+        case "7":
+            return "Owner";
+        default:
+            return "Unknown";
+            exit();
+    }
+}
+function getworkid($fetch_staff_data){
+    switch ($fetch_staff_data['workid']) {
+        case "0":
+            return "None";
+        case "1":
+            return "Normal";
+        case "2":
+            return "Fast";
+        case "3":   
+            return "VIP";
+        default:
+            return "Unknow Job";
+    }
+}
 if ($_POST['action'] == 'login') {
     $user_login = addslashes(trim($_POST['username']));
     $pwd_login  = addslashes(trim($_POST['password']));
@@ -154,9 +193,9 @@ if ($_POST['action'] == 'login') {
             $query  = pg_query_params($dbconn, $sql, [$_SESSION['login_true']]);
             $num    = pg_num_rows($query);
             $result = pg_fetch_array($query);
-            if ($result['coin'] >= $config['price_name']) {
+            if ($result['coin'] >= $web['price_name']) {
                 pg_query_params($dbconn, "UPDATE accounts SET player_name = $1 WHERE login = $2", [$nickname, $_SESSION['login_true']]);
-                pg_query_params($dbconn, "UPDATE accounts SET coin = coin - $1 WHERE login = $2", [$config['price_name'], $_SESSION['login_true']]);
+                pg_query_params($dbconn, "UPDATE accounts SET coin = coin - $1 WHERE login = $2", [$web['price_name'], $_SESSION['login_true']]);
                 $data->status = "success";
                 $data->desc   = "เปลี่ยนชื่อสำเร็จ";
                 $data->reload = "true";
@@ -176,9 +215,9 @@ if ($_POST['action'] == 'login') {
         $sql = "SELECT * FROM accounts WHERE login = $1";
         $query  = pg_query_params($dbconn, $sql, [$_SESSION['login_true']]);
         $result = pg_fetch_array($query);
-        if ($result['coin'] >= $config['price_color']) {
+        if ($result['coin'] >= $web['price_color']) {
             pg_query_params($dbconn, "UPDATE accounts SET player_color = $1 WHERE login = $2", [$nickcolor, $_SESSION['login_true']]);
-            pg_query_params($dbconn, "UPDATE accounts SET coin = coin - $1 WHERE login = $2", [$config['price_color'], $_SESSION['login_true']]);
+            pg_query_params($dbconn, "UPDATE accounts SET coin = coin - $1 WHERE login = $2", [$web['price_color'], $_SESSION['login_true']]);
             $data->status = "success";
             $data->desc   = "เปลี่ยนสีชื่อสำเร็จ";
             $data->reload = "true";
@@ -187,30 +226,47 @@ if ($_POST['action'] == 'login') {
             $data->desc   = "พ้อยไม่เพียงพอ";
         }
     }
-} else if ($_POST['action'] == 'cafestatus') {
-    $duration     = $_POST['status_cafe'];
-    $uid          = $_POST['uid'];
-    $query_select = pg_query_params($dbconn, "SELECT * FROM accounts WHERE player_id = $1", [$uid]);
-    $row          = pg_fetch_array($query_select);
-    
-    $cafe_gold    = $config['price_cafe_gold'];
-    $cafe_premium = $config['price_cafe_premium'];
-    
-    if ($row['coin'] >= $cafe_gold && $duration == 'GOLD') {
-        pg_query_params($dbconn, "UPDATE accounts SET coin = coin - $1, end_date = end_date + interval '30 days' WHERE player_id = $2", [$cafe_gold, $uid]);
-        pg_query_params($dbconn, "UPDATE accounts SET cafe = 'GOLD' WHERE player_id = $1", [$uid]);
-        $data->status = "success";
-        $data->desc   = "ซื้อ GOLD CAFE สำเร็จ";
-        $data->reload = "true";
-    } elseif ($row['coin'] >= $cafe_premium && $duration == 'PREMIUM') {
-        pg_query_params($dbconn, "UPDATE accounts SET coin = coin - $1, end_date = end_date + interval '30 days' WHERE player_id = $2", [$cafe_premium, $uid]);
-        pg_query_params($dbconn, "UPDATE accounts SET cafe = 'PREMIUM' WHERE player_id = $1", [$uid]);
-        $data->status = "success";
-        $data->desc   = "ซื้อ PREMIUM CAFE สำเร็จ";
-        $data->reload = "true";
+} else if ($_POST['action'] == 'buycafe') {
+    $cafeID = $_POST['cafeid'];
+    $sql    = "SELECT * FROM accounts WHERE login = '" . $_SESSION['login_true'] . "'";
+    $query  = pg_query($dbconn,$sql);
+    $result = pg_fetch_array($query);
+    $sub_gold = $web['sub_gold'];
+    $sub_premium = $web['sub_premium'];
+    if ($result['pc_cafe'] != "1" && $result['pc_cafe'] != "2") {
+        if (!$sub_gold) {
+            $data->status = "error";
+            $data->desc   = "ไม่พบไอเท็มนี้ในระบบ";
+        }else if (!$sub_premium) {
+            $data->status = "error";
+            $data->desc   = "ไม่พบไอเท็มนี้ในระบบ";
+        }
+        if ($cafeID == "1") {
+            if ($result['coin'] < $web['sub_gold']) {
+                $data->status = "error";
+                $data->desc   = "พ้อยต์ของคุณไม่เพียงพอ";
+            } else {
+                pg_query($dbconn,"UPDATE accounts SET coin = coin - '" . $web['sub_gold'] . "' WHERE player_id = '" . $result['player_id'] . "'");
+                pg_query($dbconn,"UPDATE accounts SET pc_cafe = '1' WHERE player_id = '" . $result['player_id'] . "'");
+                $data->status = "success";
+                $data->desc   = $web['sub_gold'] . " ได้รับสถานะ GOLD";
+                $data->reload = "true";
+            }
+        } else {
+            if ($result['coin'] < $web['sub_premium']) {
+                $data->status = "error";
+                $data->desc   = "พ้อยต์ของคุณไม่เพียงพอ";
+            } else {
+                pg_query($dbconn,"UPDATE accounts SET coin = coin - '" . $web['sub_premium'] . "' WHERE player_id = '" . $result['player_id'] . "'");
+                pg_query($dbconn,"UPDATE accounts SET pc_cafe = '2' WHERE player_id = '" . $result['player_id'] . "'");
+                $data->status = "success";
+                $data->desc   = "คุณได้รับสถานะ PREMIUM";
+                $data->reload = "true";
+            }
+        }
     } else {
         $data->status = "error";
-        $data->desc   = "พ้อยไม่เพียงพอ";
+        $data->desc   = "คุณมีสถานะอยู่แล้ว";
     }
 } else if ($_POST['action'] == 'esportstatus') {
     $duration    = $_POST['status_esport'];
@@ -218,8 +274,8 @@ if ($_POST['action'] == 'login') {
     $query_select = pg_query_params($dbconn, "SELECT * FROM accounts WHERE player_id = $1", [$uid]);
     $row         = pg_fetch_array($query_select);
     
-    $esport_gold    = $config['price_esport_gold'];
-    $esport_premium = $config['price_esport_premium'];
+    $esport_gold    = $web['price_esport_gold'];
+    $esport_premium = $web['price_esport_premium'];
     
     if ($row['coin'] >= $esport_gold && $duration == 'GOLD') {
         pg_query_params($dbconn, "UPDATE accounts SET coin = coin - $1, end_date = end_date + interval '30 days' WHERE player_id = $2", [$esport_gold, $uid]);
@@ -294,27 +350,50 @@ if ($_POST['action'] == 'login') {
         $data->status = "error";
         $data->desc   = "พ้อยไม่เพียงพอ";
     }
-} else if ($_POST['action'] == 'sharepoint') {
-    $item_id = $_POST['itemid'];
-    $share_id = $_POST['shareid'];
-    
-    $sql_check_share = "SELECT * FROM share_points WHERE id = $1";
-    $query_check_share = pg_query_params($dbconn, $sql_check_share, [$share_id]);
-    $row_share = pg_fetch_array($query_check_share);
-    
-    $sql_check_user = "SELECT * FROM accounts WHERE login = $1";
-    $query_check_user = pg_query_params($dbconn, $sql_check_user, [$_SESSION['login_true']]);
-    $row_user = pg_fetch_array($query_check_user);
-    
-    if ($row_user['share_point'] >= $row_share['share_point']) {
-        pg_query_params($dbconn, "UPDATE accounts SET share_point = share_point - $1 WHERE login = $2", [$row_share['share_point'], $_SESSION['login_true']]);
-        pg_query_params($dbconn, "INSERT INTO web_history_share (login, item_id, share_point, date) VALUES ($1, $2, $3, NOW())", [$_SESSION['login_true'], $item_id, $row_share['share_point']]);
-        $data->status = "success";
-        $data->desc   = "ซื้อไอเท็มสำเร็จ";
-        $data->reload = "true";
-    } else {
+} else if ($_POST['action'] == 'buyitempoint') {
+    $itemid = $_POST['itemid'];
+    $sql    = "SELECT * FROM accounts WHERE login = '" . $_SESSION['login_true'] . "'";
+    $query  = pg_query($dbconn,$sql);
+    $result = pg_fetch_array($query);
+    $sql    = "SELECT * FROM webshop_sell WHERE item_id = '" . $itemid . "'";
+    $query  = pg_query($dbconn,$sql);
+    $rows   = pg_fetch_array($query);
+    if (!$rows) {
         $data->status = "error";
-        $data->desc   = "พ้อยไม่เพียงพอ";
+        $data->desc   = "ไม่พบไอเท็มนี้ในระบบ";
+    }
+    $day = $rows['day'] * 86400;
+    if ($result['coin'] < $rows['price']) {
+        $data->status = "error";
+        $data->desc   = "พ้อย ไม่เพียงพอ";
+    } else {
+        $sqli   = "SELECT * FROM player_items WHERE owner_id='" . $result['player_id'] . "' AND item_id = '" . $rows['item_id'] . "'";
+        $iquery = pg_query($dbconn,$sqli);
+        $row_i  = pg_fetch_array($iquery);
+        if ($row_i['equip'] == 1) {
+            pg_query($dbconn,"UPDATE player_items SET count = count + '" . $day . "' WHERE object_id='" . $row_i['object_id'] . "'");
+            pg_query($dbconn,"UPDATE accounts SET coin = coin - '" . $rows['price'] . "' WHERE player_id = '" . $result['player_id'] . "'");
+            pg_query($dbconn,"UPDATE webshop_sell SET count = count + 1 WHERE item_id = '" . $itemid . "'");
+            pg_query($dbconn,"INSERT INTO webshop_log (player_id, item_name,day,date,price,img) VALUES ('" . $result['player_id'] . "', '" . $rows['item_name'] . "', '" . $rows['day'] . "', '" . date("Y-m-d H:i:s", time()) . "','" . $rows['price'] . "','" . $rows['image'] . "')");
+            $data->status = "success";
+            $data->desc   = "ซื้อไอเท็มสำเร็จ";
+            $data->reload = "true";
+        } else if ($row_i['equip'] == 2) {
+            $data->status = "error";
+            $data->desc   = "ไอเทมถูกใช้งานแล้ว ไม่สามารถซื้อซ้ำได้";
+        } else if ($row_i['equip'] == 3) {
+            $data->status = "error";
+            $data->desc   = "คุณมีไอเทมชิ้นนี้ในตัวแบบถาวรแล้ว ไม่สามารถซื้อซ้ำได้ !";
+        } else {
+            pg_query($dbconn,"INSERT INTO player_topups (player_id, item_id, item_name, count, equip) VALUES ('" . $result['player_id'] . "', '" . $rows['item_id'] . "', '" . $rows['item_name'] . "', '" . $day . "', '1)");
+            pg_query($dbconn,"INSERT INTO player_items (owner_id, item_id, item_name, count, category, equip) VALUES ('" . $result['player_id'] . "', '" . $rows['item_id'] . "', '" . $rows['item_name'] . "', '" . $day . "', '" . $rows['item_category'] . "' , '1')");
+            pg_query($dbconn,"UPDATE accounts SET coin = coin - '" . $rows['price'] . "' WHERE player_id = '" . $result['player_id'] . "'");
+            pg_query($dbconn,"UPDATE webshop_sell SET count = count + 1 WHERE item_id = '" . $itemid . "'");
+            pg_query($dbconn,"INSERT INTO webshop_log (player_id, item_name,day,date,price,img) VALUES ('" . $result['player_id'] . "', '" . $rows['item_name'] . "', '" . $rows['day'] . "', '" . date("Y-m-d H:i:s", time()) . "','" . $rows['price'] . "','" . $rows['image'] . "')");
+            $data->status = "success";
+            $data->desc   = "ซื้อไอเท็มสำเร็จ";
+            $data->reload = "true";
+        }
     }
 } else if ($_POST['action'] == 'redeem') {
     $code = $_POST['code'];
@@ -341,7 +420,57 @@ if ($_POST['action'] == 'login') {
         $data->status = "error";
         $data->desc   = "ไม่พบโค้ดนี้";
     }
+}else if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action'])) {
+    if ($_POST['action'] == 'subject_staff') {
+        $staff_id = $_POST['subject_staff'];
+
+        if ($staff_id != '0') {
+            $select_sql_staff = "SELECT * FROM staff_employees WHERE staff_id = $1";
+            $result = pg_query_params($dbconn, $select_sql_staff, array($staff_id));
+
+            if (pg_num_rows($result) > 0) {
+                $staff_details = pg_fetch_assoc($result);
+                ob_start();
+                ?>
+                
+                <table class="table table-bordered">
+                    <tr>
+                        <td>UID พนักงาน</td>
+                        <td><?php echo htmlspecialchars($staff_details['staff_id']); ?></td>
+                    </tr>
+                    <tr>
+                        <td>ชื่อพนักงาน</td>
+                        <td><?php echo htmlspecialchars($staff_details['staff_name']); ?></td>
+                    </tr>
+                    <tr>
+                        <td>ตําแหน่ง</td>
+                        <td><?php echo htmlspecialchars(getAccessLevel($staff_details)); ?></td>
+                    </tr>
+                    <tr>
+                        <td>ประเภทงานที่ได้รับมอบหมาย</td>
+                        <td><?php echo htmlspecialchars(getworkid($staff_details)); ?></td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary btn-block" style="margin:10px" data-bs-toggle="button"  ><i class="fas fa-edit"></i> แก้ไขงาน</button><br>
+                <button type="button" class="btn btn-danger btn-block fd-danger aos-init aos-animate" style="margin:10px" data-bs-toggle="button"  ><i class="fas fa-trash-alt"></i> ลบงาน</button><br>
+                <button type="button" class="btn btn-success btn-block fd-success" style="margin:10px" data-bs-toggle="button"  ><i class="fas fa-share"></i> แชร์งาน</button><br>
+                    
+                <?php
+                $html = ob_get_clean();
+                $data->status = 'success';
+                $data->html = $html;
+            } else {
+                $data->desc = 'ไม่พบพนักงานที่ท่านเลือก';
+            }
+        } else {
+            $data->desc = 'กรุณาเลือกพนักงานก่อนดำเนินการ';
+        }
+    } else {
+        $data->desc = 'ไม่พบข้อมูลที่ถูกส่งมา';
+    }
 }
+
+
 
 echo json_encode($data);
 ?>
