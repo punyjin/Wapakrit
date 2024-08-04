@@ -15,8 +15,22 @@ function getError(desc = "เกิดข้อผิดพลาด", title = "
 		confirmButtonColor: '#ff5656',
 	});
 }
-
+function fetchHistory() {
+	$.ajax({
+	   url: 'history_item.php',
+	   type: 'POST',
+	   success: function(response) {
+		  $('#history').html(response);
+		  setTimeout(fetchHistory, 1000);
+	   },
+	   error: function() {
+		  alert('An error occurred while processing your request.');
+	   }
+	});
+ }
 $(document).ready(function() {
+	
+
 	// Key Enter may be in future add more function
 	$("#login-form input").on("keypress", function(e) {
 		if (e.keyCode == 13) {
