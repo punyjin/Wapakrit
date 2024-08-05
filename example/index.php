@@ -68,7 +68,7 @@ if (isset($_SESSION['login_true'])) {
     <script src="<?=$uri;?>/assets/js/sweetalert2.min.js"></script>
 
     <!-- Custom JS -->
-     <script src="v1/web/web.jsmain.js"></script>
+    <script src="v1/web/web.jsmain.js"></script>
     
     
     <style>

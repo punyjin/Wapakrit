@@ -16,8 +16,7 @@ function duration($begin, $end)
 
 function encripitar($pass)
 {
-    $salt   = '/x!a@r-$r%an¨.&e&+f*f(f(a)';
-    $output = hash_hmac('md5', $pass, $salt);
+    $output = password_hash($pass, PASSWORD_BCRYPT);
     return $output;
 }
 
@@ -77,23 +76,31 @@ function getworkid($fetch_staff_data){
 if ($_POST['action'] == 'login') {
     $user_login = addslashes(trim($_POST['username']));
     $pwd_login  = addslashes(trim($_POST['password']));
-    $hashpass   = hash_hmac('md5', $pwd_login, '/x!a@r-$r%an¨.&e&+f*f(f(a)');
+    $hashpass   = password_hash($pwd_login, PASSWORD_BCRYPT);
     
-    $result = pg_query_params($dbconn, "SELECT login, password FROM accounts WHERE login=$1 AND password=$2", [$user_login, $hashpass]);
-    $num    = pg_num_rows($result);
+    $result = pg_query_params($dbconn, "SELECT login, password FROM accounts WHERE login=$1", [$user_login]); 
+    //$num    = pg_num_rows($result);
     
     if (empty($_POST['username']) || empty($_POST['password'])) {
         $data->status = "error";
         $data->desc   = "กรุณากรอกข้อมูลให้ครบ";
     } else {
-        if ($num <= 0) {
+        if ($row = pg_fetch_assoc($result)) {
+            $keeppassHash = $row['password'];
+            if (password_verify($pwd_login, $keeppassHash)) {
+                $_SESSION['login_true'] = $_POST['username'];
+                $data->status           = "success";
+                $data->desc             = "เข้าสู่ระบบสำเร็จ";
+                $data->reload           = "true";
+            }
+            else{
+                $data->status = "error";
+                $data->desc   = "ชื่อผู้ใช้หรือรหัสผิดพลาด";
+            }
+        }
+        else{
             $data->status = "error";
             $data->desc   = "ชื่อผู้ใช้หรือรหัสผิดพลาด";
-        } else {
-            $_SESSION['login_true'] = $_POST['username'];
-            $data->status           = "success";
-            $data->desc             = "เข้าสู่ระบบสำเร็จ";
-            $data->reload           = "true";
         }
     }
 } else if ($_POST['action'] == 'logout') {
@@ -111,8 +118,8 @@ if ($_POST['action'] == 'login') {
     $numrows = pg_num_rows($query);
     $rows    = pg_fetch_array($query);
     
-    $hashpass  = hash_hmac('md5', $pass, '/x!a@r-$r%an¨.&e&+f*f(f(a)');
-    $hashnpass = hash_hmac('md5', $npassword, '/x!a@r-$r%an¨.&e&+f*f(f(a)');
+    $hashpass  = password_hash(PASSWORD_BCRYPT, $pass);
+    $hashnpass = password_hash(PASSWORD_BCRYPT, $npassword);
     
     if (empty($pass) || empty($npassword) || empty($rpassword)) {
         $data->status = "error";
@@ -298,7 +305,7 @@ if ($_POST['action'] == 'login') {
     $password    = $_POST['password'];
     $re_password = $_POST['re_password'];
     $email       = $_POST['email'];
-    $hashpass   = hash_hmac('md5', $pwd_login, '/x!a@r-$r%an¨.&e&+f*f(f(a)');
+    $hashpass   = password_hash(PASSWORD_BCRYPT, $pwd_login);
     
     $sql_check_username = "SELECT * FROM accounts WHERE login = $1";
     $query_check_username = pg_query_params($dbconn, $sql_check_username, [$username]);

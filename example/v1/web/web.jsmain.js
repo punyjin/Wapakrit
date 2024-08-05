@@ -28,6 +28,24 @@ function fetchHistory() {
 	   }
 	});
  }
+window.onload = function() {
+	if (window.jquery){
+		alert("work");
+	}
+	else {
+		location.reload();
+	}
+	if ('undefined' == typeof window.jquery){
+		document.getElementById('history').innerHTML = "work";
+		//fetchHistory();
+		console.log("work");
+	}
+	else{
+		document.getElementById('history').innerHTML = "not work";
+		console.log("not work");
+	}
+}
+
 $(document).ready(function() {
 	
 
@@ -37,15 +55,19 @@ $(document).ready(function() {
 			clickLogin();
 		}
 	});
+
 	// Sidebar Back To Home Page Muka
 	$("#sidebarToggle").on('click', function(e) {
         e.preventDefault();
         location.href = "?page=home";
     });
+
+	// Search Staff
 	$("#btn-search-staff").on('click',function(e){
 		e.preventDefault();
 		searchStaff();
 	})
+
 	// Animation Center Image
 	$(window).on('beforeunload', function() {
 		$(window).scrollTop(0);
@@ -172,6 +194,7 @@ function buyitempoint($item) {
 			}
 		}
 	});
+	
 }
 function clickLogin() {
 	$.ajax({

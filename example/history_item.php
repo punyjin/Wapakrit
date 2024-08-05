@@ -36,8 +36,8 @@
          <td style="text-align:center"><?php echo $rstopup['item_name'];?></td>
          <td style="text-align:center" width="5%"><img src="<?=$uri;?>/assets/image/shop/<?=$rstopup['img'];?>.png" id="image" style="width:48px; height:25px;"></td>
          <td style="text-align:center"><?php echo number_format($rstopup['price'],2);?> บาท</td>
-		 <td style="text-align:center"><?php echo $rstopup['date'];?></td>
-		 <td style="text-align:center"><?php echo $rstopup['day'];?> ชิ้น</td>
+		   <td style="text-align:center"><?php echo $rstopup['date'];?></td>
+		   <td style="text-align:center"><?php echo $rstopup['day'];?> ชิ้น</td>
       </tr>
       <?php $num++; } ?>
    </tbody>

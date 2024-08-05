@@ -10,7 +10,8 @@ $cPlayer1 = $connec->prepare('SELECT player_id FROM accounts');
 error_reporting(~E_NOTICE);
 $user_login = addslashes(trim($_POST['user_login']));
 $pwd_login = addslashes(trim($_POST['pwd_login']));
-$hashpass = hash_hmac('md5', $pwd_login, $config['md5_salt']);
+//$hashpass = hash_hmac('md5', $pwd_login, $config['md5_salt']);
+$hashpass = password_hash($pwd_login,PASSWORD_BCRYPT);
 
 function GenerateRandomString($length = 8) 
 {

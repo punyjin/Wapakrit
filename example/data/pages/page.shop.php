@@ -314,18 +314,6 @@
       </div>
       <div class="card-body" style="padding: 0px; border-top:4px solid #306aff;position: relative;">
          
-         <script language="javascript">
-            function History() {
-            	var req;
-            	if (window.XMLHttpRequest) req=new XMLHttpRequest(); else if (window.ActiveXObject) req=new ActiveXObject("Microsoft.XMLHTTP");	else { alert("Browser not support");return false; }
-            	req.onreadystatechange=function() {	if (req.readyState==4) { document.getElementById('history').innerHTML=req.responseText;	setTimeout("History()",1000);} }
-            	var querystr="history_item.php";
-            	req.open("POST", querystr , true);
-            	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            	req.send(null);
-            }
-            History();
-         </script>  
          <div align="center" id="history" name="history"></div>
       </div>
    </div>
