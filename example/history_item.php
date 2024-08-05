@@ -21,7 +21,7 @@
    <tbody>
       <?php
          session_start();
-         include($_SERVER['DOCUMENT_ROOT']."/configs.php");
+         include($_SERVER['DOCUMENT_ROOT']."/connect.php");
          include($_SERVER['DOCUMENT_ROOT']."/data/database/postgres.php");
          $result = pg_query($dbconn,"select * from accounts where login='".$_SESSION['login_true']."'") or die ("กำลังเเก้ไขระบบกกรุณารอซํกครู่");
          $dbarr = pg_fetch_array($result);
