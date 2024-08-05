@@ -20,9 +20,9 @@
    </thead>
    <tbody>
       <?php
-         session_start();
-         include($_SERVER['DOCUMENT_ROOT']."/configs.php");
-         include($_SERVER['DOCUMENT_ROOT']."/data/database/postgres.php");
+         /*session_start();
+         include("/connect.php");
+         include("/data/database/postgres.php");
          $result = pg_query($dbconn,"select * from accounts where login='".$_SESSION['login_true']."'") or die ("กำลังเเก้ไขระบบกกรุณารอซํกครู่");
          $dbarr = pg_fetch_array($result);
          $strhistopup = "SELECT * FROM webshop_log where player_id='".$dbarr['player_id']."' order by player_id desc";
@@ -30,7 +30,7 @@
          $num = 1;
                           
          while ($rstopup = pg_fetch_array($qrtopup)) { 
-         ?>
+        */ ?>
       <tr class="50">
          <td style="text-align:center"><?php echo $num; ?></td>
          <td style="text-align:center"><?php echo $rstopup['item_name'];?></td>
