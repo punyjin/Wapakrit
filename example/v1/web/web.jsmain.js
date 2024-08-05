@@ -15,6 +15,13 @@ function getError(desc = "เกิดข้อผิดพลาด", title = "
 		confirmButtonColor: '#ff5656',
 	});
 }
+function module_edit(){
+	$('a[data-toggle="modal"]').click(function() {
+        var targetModal = $(this).data('target');
+        $(targetModal).modal('show');
+    });
+}
+
 function fetchHistory() {
 	$.ajax({
 	   url: 'history_item.php',
