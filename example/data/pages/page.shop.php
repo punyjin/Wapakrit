@@ -63,7 +63,7 @@
                            <i class="fas fa-tags text-danger"></i>  จำนวน: <?=$newitemshop['day'];?> ชิ้น</br><br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿</b></i>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
                      </div>
                   </div>
                </div>
@@ -96,7 +96,7 @@
                            <br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿											<br>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿</a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿</a>
                      </div>
                   </div>
                </div>
@@ -129,7 +129,7 @@
                            <br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿<br>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
                      </div>
                   </div>
                </div>
@@ -162,7 +162,7 @@
                            <br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿<br>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" href="https://discord.gg/hmCWt8HUBe"><i class="fa fa-check"></i> ติดต่อร้านค้า : <?=number_format($newitemshop['price'],2);?>  </a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" href="https://discord.gg/hmCWt8HUBe"><i class="fa fa-check"></i> ติดต่อร้านค้า : <?=number_format($newitemshop['price'],2);?>  </a>
                      </div>
                   </div>
                </div>
@@ -194,7 +194,7 @@
                            <br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿											<br>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
                      </div>
                   </div>
                </div>
@@ -227,7 +227,7 @@
                            <br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿											<br>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
                      </div>
                   </div>
                </div>
@@ -260,7 +260,7 @@
                            <br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿											<br>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
                      </div>
                   </div>
                </div>
@@ -293,7 +293,7 @@
                            <br>
                            <i class="fas fa-dollar-sign text-success"></i> ราคา: <?=number_format($newitemshop['price'],2);?> ฿											<br>
                         </p>
-						<a class="float-right btn btn-success fd-success" style="margin-left: 5px;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
+						<a class="float-right btn btn-success fd-success" style="margin-left: 5vh;" onclick="buyitempoint(<?=$newitemshop['item_id'];?>)"><i class="fa fa-check"></i> ซื้อในราคา : <?=number_format($newitemshop['price'],2);?> ฿ </a>
                      </div>
                   </div>
                </div>

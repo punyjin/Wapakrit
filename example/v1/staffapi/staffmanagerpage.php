@@ -123,7 +123,10 @@ function getAccessLevel($staff_result) {
                 $get_good_table_rows .= '<td style="text-align:center;width:15%;">' . get_type_menu($shop_result) . '</td>';
                 $get_good_table_rows .= '<td style="text-align:center;width:15%;">' . get_type_news($shop_result) . '</td>';
                 $get_good_table_rows .= '<td style="text-align:center;width:15%;">' . get_id_shop($shop_result) . '</td>';
+                $get_good_table_rows .= '<td style="text-align:center;width:15%;">';
+                $get_good_table_rows .= '<a href="javascript:void(0);" id="item_id_' . $shop_result['item_id'] . '" data-toggle="modal" data-target="#HomeModal" onclick="form_module(' . $shop_result['item_id'] . ');">OpenModule</a>';$get_good_table_rows .= '</td>';
                 $get_good_table_rows .= '</tr>';
+                
             }
         } else {
             $table_rows = '<tr><td colspan="10" style="text-align:center;">ไม่พบข้อมูล</td></tr>';
