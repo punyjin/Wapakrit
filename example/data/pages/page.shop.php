@@ -313,7 +313,9 @@
          <i class="fa fa-fw fa-money-bill-alt"></i>&nbsp;ประวัติการสั่งซื้อสินค้า
       </div>
       <div class="card-body" style="padding: 0px; border-top:4px solid #306aff;position: relative;">
-         
+         <script>
+            fetchHistory();
+         </script>
          <div align="center" id="history" name="history"></div>
       </div>
    </div>
