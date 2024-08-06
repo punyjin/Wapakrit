@@ -35,23 +35,19 @@ function fetchHistory() {
 	   }
 	});
  }
-window.onload = function() {
-	if (window.jquery){
-		alert("work");
-	}
-	else {
-		location.reload();
-	}
-	if ('undefined' == typeof window.jquery){
-		document.getElementById('history').innerHTML = "work";
-		//fetchHistory();
-		console.log("work");
-	}
-	else{
-		document.getElementById('history').innerHTML = "not work";
-		console.log("not work");
-	}
-}
+ function fetchPlayer() {
+	$.ajax({
+	   url: 'player.php',
+	   type: 'POST',
+	   success: function(response) {
+		  $('#player').html(response);
+		  setTimeout(fetchPlayer, 1000);
+	   },
+	   error: function() {
+		  alert('An error occurred while processing your request.');
+	   }
+	});
+ }
 
 $(document).ready(function() {
 	

@@ -75,16 +75,7 @@
       <div class="card-body" style="padding: 0px; border-top:4px solid #306aff;position: relative;">
          <div class="container">
             <script language="javascript">
-               function player() {
-               	var req;
-               	if (window.XMLHttpRequest) req=new XMLHttpRequest(); else if (window.ActiveXObject) req=new ActiveXObject("Microsoft.XMLHTTP");	else { alert("Browser not support");return false; }
-               	req.onreadystatechange=function() {	if (req.readyState==4) { document.getElementById('player').innerHTML=req.responseText;	setTimeout("player()",1000);} }
-               	var querystr="player.php";
-               	req.open("POST", querystr , true);
-               	req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-               	req.send(null);
-               }
-               player();
+               fetchPlayer();
             </script> 
             <div align="center" id="player" name="player"></div>
             <a  href="?page=table_infomation_data_sync_player_genshin_impact" class="btn btn-primary btn-block"><i class="fa fa-fw fa-table"></i>&nbsp;ตารางงาน</a>
