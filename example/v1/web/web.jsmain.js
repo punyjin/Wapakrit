@@ -48,9 +48,7 @@ function fetchHistory() {
 	   }
 	});
  }
- function form_module(item_id) {
-	$('#mode1').val(item_id);
-}
+ 
 $(document).ready(function() {
 	
 

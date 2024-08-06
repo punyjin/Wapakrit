@@ -131,7 +131,7 @@ function getAccessLevel($staff_result) {
         } else {
             $table_rows = '<tr><td colspan="10" style="text-align:center;">ไม่พบข้อมูล</td></tr>';
         }
-
+        
         // ตรวจสอบการดึงข้อมูลและอัปเดต last_login
         date_default_timezone_set('Asia/Bangkok');
         if ($staff_result_query && pg_num_rows($staff_result_query) > 0) {
@@ -174,3 +174,8 @@ function getAccessLevel($staff_result) {
             $table_rows = '<tr><td colspan="10" style="text-align:center;">ไม่พบข้อมูล</td></tr>';
         }
 ?>
+<script>
+    function form_module(item_id) {
+	$('#mode1').val(item_id);
+}
+</script>
