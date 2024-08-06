@@ -48,78 +48,45 @@ function fetchHistory() {
 	   }
 	});
  }
- 
-$(document).ready(function() {
-	
+ function loadModalData(item_id) {
+    $.ajax({
+        url: 'v1/staffapi/get_item_data.php',
+        type: 'POST',
+        data: { action: 'get_modal_sell', item_id: item_id },
+        success: function(response) {
+            try {
+                console.log(response);
+                var data = JSON.parse(response);
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
 
-	// Key Enter may be in future add more function
-	$("#login-form input").on("keypress", function(e) {
-		if (e.keyCode == 13) {
-			clickLogin();
-		}
-	});
+                $('#goods_name').val(data.item_name);
+                $('#item_id').val(data.item_id);
+                $('#price').val(data.price);
+                $('#day').val(data.day);
+                $('#image').val(data.image);
+                $('#user_comment').val(data.user_comment);
+                $('#tag_item_goods').val(data.item_id);
+				$('#TAG_ID').val(data.tag_id);
+                // อัปเดตการแสดงภาพพรีวิว
+                $('#image_preview').attr('src', 'assets/images/shop/' + data.image + '.png');
 
-	// Sidebar Back To Home Page Muka
-	$("#sidebarToggle").on('click', function(e) {
-        e.preventDefault();
-        location.href = "?page=home";
+                // ตั้งค่า select box สำหรับหมวดหมู่
+                $('#select_category').val(data.menu);
+				$('#select_type').val(data.item_category);
+				$('#select_news').val(data.news);
+				$('#TAG_ID').val(data.id_shop);
+            } catch (e) {
+                alert('Error parsing JSON response: ' + e.message);
+            }
+        },
+        error: function(xhr, status, error) {
+            alert('Ajax error: ' + error);
+        }
     });
-
-	// Search Staff
-	$("#btn-search-staff").on('click',function(e){
-		e.preventDefault();
-		searchStaff();
-	})
-
-	// Animation Center Image
-	$(window).on('beforeunload', function() {
-		$(window).scrollTop(0);
-	});
-	$(this).scrollTop(0);
-	let animation = $("#animation");
-	let top = 0;
-	let isadded = true;
-	setInterval(function() {
-		if (top >= 20) {
-			isadded = false;
-		}
-		if (top <= 0) {
-			isadded = true;
-		}
-		if (isadded) {
-			top += 0.1;
-		} else {
-			top -= 0.1;
-		}
-		animation.css("top", top + "px");
-	}, 5);
-
-	// Register form submit
-	$('#registerForm').on('submit', function(e) {
-		e.preventDefault();
-		$.ajax({
-			url: 'v1/action.php',
-			type: 'POST',
-			data: $(this).serialize(), // ส่งข้อมูลฟอร์ม
-			success: function(response) {
-				var data = JSON.parse(response);
-				if (data.status === 'success') {
-					getSuccess(data.desc, data.title);
-					if (data.reload === 'true') {
-						setTimeout(function() { location.reload(); }, 1500);
-					}
-				} else {
-					getError(data.desc, data.title);
-				}
-			},
-			error: function(xhr, status, error) {
-				console.error('Error: ' + status + ' - ' + error);
-				console.error('Response Text: ' + xhr.responseText);
-				getError('การเชื่อมต่อล้มเหลว', 'Connection Failed');
-			}
-		});
-	});
-});
+}
 
 function clickLogout() {
 	$.ajax({
@@ -423,3 +390,130 @@ function saveComment(stu_no){
 	});
 
 }
+$(document).ready(function() {
+	
+
+    $('#editButton').on('click', function() {
+		var inputs = $('#editForm').find('input');
+		var selects = $('#editForm').find('select');
+		
+		// สลับสถานะ readonly ของ input
+		inputs.prop('readonly', function(i, val) {
+			return !val; // สลับค่า
+		});
+	
+		// สลับสถานะ disabled ของ select
+		selects.prop('disabled', function(i, val) {
+			return !val; // สลับค่า
+		});
+	
+		// ซ่อนปุ่ม "แก้ไข" และแสดงปุ่ม "บันทึกข้อมูล"
+		$(this).hide();
+		$('#saveButton').show();
+	});
+	
+
+    $('#editForm').on('submit', function(e) {
+		e.preventDefault();
+		var formData = $(this).serialize();
+	
+		$.ajax({
+			url: 'v1/staffapi/update_item.php',
+			type: 'POST',
+			data: formData,
+			success: function(response) {
+				try {
+					console.log(response); // เพิ่มบรรทัดนี้เพื่อตรวจสอบ response
+					var data = JSON.parse(response);
+					if (data.status === 'success') {
+						getSuccess(data.desc, data.title);
+						if (data.reload === 'true') {
+							setTimeout(function() { location.reload(); }, 1500);
+						}
+					} else {
+						getError(data.desc, data.title);
+					}
+					location.reload();
+				} catch (e) {
+					alert('Error parsing JSON response: ' + e.message);
+				}
+			},
+			error: function() {
+				alert('มีข้อผิดพลาดในการบันทึกข้อมูล');
+			}
+		});
+	});
+	
+	
+	
+
+    
+
+	// Key Enter may be in future add more function
+	$("#login-form input").on("keypress", function(e) {
+		if (e.keyCode == 13) {
+			clickLogin();
+		}
+	});
+
+	// Sidebar Back To Home Page Muka
+	$("#sidebarToggle").on('click', function(e) {
+        e.preventDefault();
+        location.href = "?page=home";
+    });
+
+	// Search Staff
+	$("#btn-search-staff").on('click',function(e){
+		e.preventDefault();
+		searchStaff();
+	})
+
+	// Animation Center Image
+	$(window).on('beforeunload', function() {
+		$(window).scrollTop(0);
+	});
+	$(this).scrollTop(0);
+	let animation = $("#animation");
+	let top = 0;
+	let isadded = true;
+	setInterval(function() {
+		if (top >= 20) {
+			isadded = false;
+		}
+		if (top <= 0) {
+			isadded = true;
+		}
+		if (isadded) {
+			top += 0.1;
+		} else {
+			top -= 0.1;
+		}
+		animation.css("top", top + "px");
+	}, 5);
+
+	// Register form submit
+	$('#registerForm').on('submit', function(e) {
+		e.preventDefault();
+		$.ajax({
+			url: 'v1/action.php',
+			type: 'POST',
+			data: $(this).serialize(), // ส่งข้อมูลฟอร์ม
+			success: function(response) {
+				var data = JSON.parse(response);
+				if (data.status === 'success') {
+					getSuccess(data.desc, data.title);
+					if (data.reload === 'true') {
+						setTimeout(function() { location.reload(); }, 1500);
+					}
+				} else {
+					getError(data.desc, data.title);
+				}
+			},
+			error: function(xhr, status, error) {
+				console.error('Error: ' + status + ' - ' + error);
+				console.error('Response Text: ' + xhr.responseText);
+				getError('การเชื่อมต่อล้มเหลว', 'Connection Failed');
+			}
+		});
+	});
+});

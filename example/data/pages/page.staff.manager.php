@@ -1,10 +1,11 @@
 <?php 
-    include("v1/connect.php");
-    include("data/database/postgres.php"); 
-    include("v1/staffapi/staffmanagerpage.php");
-    
+include("v1/connect.php");
+include("data/database/postgres.php"); 
+include("v1/staffapi/staffmanagerpage.php");
+include("v1/staffapi/option_data.php");
+
 ?>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
     body {
             font-family: 'Kanit', serif;
@@ -16,9 +17,9 @@
         position:sticky;
         overflow-y:scroll;
         overflow-x:hidden;
+        
     }
 </style>
-
     <div id="wrapper" style="border-radius:50px;">
         <?php include("sidebar_staff.php");?>
             <div id="content-wrapper" class="d-flex flex-column">
@@ -93,6 +94,7 @@
                            <td style="text-align:center;width:15%;">หมวดหมู่</td>
                            <td style="text-align:center;width:15%;">ประเภทข่าวสาร</td>
                            <td style="text-align:center;width:15%;">ID</td>
+                           <td style="text-align:center;width:5%;">Tools</td>
                         </tr>
                      </thead>
                      <tbody>
@@ -139,3 +141,73 @@
 </div>
 </div>
 <br>
+<!-- Modal -->
+<div class="modal fade" id="Modal_goods" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <form class="user" id="editForm">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Edit Item</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="goods_name">ชื่อสินค้า</label>
+                        <input type="text" class="form-control" id="goods_name" name="goods_name" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="item_id">รหัสสินค้า</label>
+                        <input type="text" class="form-control" id="item_id" name="item_id" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">ราคา</label>
+                        <input type="text" class="form-control" id="price" name="price" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="day">จำนวน</label>
+                        <input type="text" class="form-control" id="day" name="day" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">รูปภาพ</label>
+                        <img src="" id="image_preview" style="width:100px;height:100px;display:block;margin-bottom:10px;">
+                        <input type="text" class="form-control" id="image" name="image" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="select_category">ประเภทสินค้า</label>
+                        <select class="form-control" id="select_type" name="select_type" disabled>
+                            <?php echo $options_type; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="select_category">หมวดหมู่</label>
+                        <select class="form-control" id="select_category" name="menu" disabled>
+                            <?php echo $options_category; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="select_category">ประเภทข่าวสาร</label>
+                        <select class="form-control" id="select_news" name="select_news" disabled>
+                            <?php echo $options_news; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_comment">รหัสร้านค้า</label>
+                        <input type="text" class="form-control" id="TAG_ID" name="TAG_ID" maxlength="1" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_comment">รายละเอียด</label>
+                        <input type="text" class="form-control" id="user_comment" name="user_comment" readonly>
+                    </div>
+                    <input type="hidden" name="tag_item_goods" id="tag_item_goods">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">ปิด</button>
+                    <button type="button" class="btn btn-primary" id="editButton">แก้ไข</button>
+                    <button type="submit" class="btn btn-primary" id="saveButton" style="display:none;">บันทึกข้อมูล</button>
+                </div>
+            </div>
+        </div>
+    </form>    
+</div>

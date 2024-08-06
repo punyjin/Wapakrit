@@ -1,6 +1,7 @@
 <?php
 function getAccessLevel($staff_result) {
             switch ($staff_result['access_level']) {
+                
                 case "1":
                     return "Staff Community";
                 case "2":
@@ -22,6 +23,8 @@ function getAccessLevel($staff_result) {
         }
         function get_type_goods($shop_result) {
             switch ($shop_result['item_category']) {
+                case "0":
+                    return "NONE";
                 case "1":
                     return "Weapon";
                 case "2":
@@ -35,6 +38,8 @@ function getAccessLevel($staff_result) {
         }
         function get_type_menu($shop_result) {
             switch ($shop_result['menu']) {
+                case "0":
+                    return "NONE";
                 case "1":
                     return "Assault Rifle";
                 case "2":
@@ -57,7 +62,9 @@ function getAccessLevel($staff_result) {
                 }
         }
         function get_type_news($shop_result) {
-            switch ($shop_result['menu']) {
+            switch ($shop_result['news']) {
+                case "0":
+                    return "NONE";
                 case "1":
                     return "HOT";
                 case "2":
@@ -65,7 +72,7 @@ function getAccessLevel($staff_result) {
                 case "3":
                     return "EVENT";
                 case "4":
-                    return "SPECIAL STATUS";
+                    return "SPECIAL";
                 default:
                     return "Unknown";
                     exit();
@@ -73,6 +80,8 @@ function getAccessLevel($staff_result) {
         }
         function get_id_shop($shop_result) {
             switch ($shop_result['id_shop']) {
+                case "0":
+                    return "NONE";
                 case "1":
                     return "#ID 1";
                 case "2":
@@ -124,7 +133,7 @@ function getAccessLevel($staff_result) {
                 $get_good_table_rows .= '<td style="text-align:center;width:15%;">' . get_type_news($shop_result) . '</td>';
                 $get_good_table_rows .= '<td style="text-align:center;width:15%;">' . get_id_shop($shop_result) . '</td>';
                 $get_good_table_rows .= '<td style="text-align:center;width:15%;">';
-                $get_good_table_rows .= '<a href="javascript:void(0);" id="item_id_' . $shop_result['item_id'] . '" data-toggle="modal" data-target="#HomeModal" onclick="form_module(' . $shop_result['item_id'] . ');">OpenModule</a>';$get_good_table_rows .= '</td>';
+                $get_good_table_rows .= '<a href="javascript:void(0);" id="item_id_' . $shop_result['item_id'] . '" data-toggle="modal" data-target="#Modal_goods" onclick="loadModalData(' . $shop_result['item_id'] . ');">แก้ไข</a>';
                 $get_good_table_rows .= '</tr>';
                 
             }
@@ -140,6 +149,7 @@ function getAccessLevel($staff_result) {
 
             $update_sql = "UPDATE staff_employees SET last_login = $1 WHERE staff_id = $2";
             pg_query_params($dbconn, $update_sql, array($current_time, $user_id));
+
         }
 
         // สร้างตัวเลือกจากผลลัพธ์ของการ query
@@ -174,8 +184,3 @@ function getAccessLevel($staff_result) {
             $table_rows = '<tr><td colspan="10" style="text-align:center;">ไม่พบข้อมูล</td></tr>';
         }
 ?>
-<script>
-    function form_module(item_id) {
-	$('#mode1').val(item_id);
-}
-</script>
