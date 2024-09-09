@@ -1,0 +1,8 @@
+var cat = "cat";
+if (cat == "cat")
+{
+return true
+}
+else
+{
+return true}
